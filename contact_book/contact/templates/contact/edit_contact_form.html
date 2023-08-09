@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Contact{% endblock %}
+
+{% block content %}
+<h1>Edit a Contact</h1>
+<form method="POST">
+    <table>
+        {{form}}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+        <label for="contact">Select Which Contact is being Edited: </label>
+        <select name="contact" id="contact">
+            {% for contact in contacts %}
+                <option value="{{contact.id}}">{{contact.fname}} {{contact.lname}}</option>
+            {% endfor %}
+        </select>
+    </table>
+    {% csrf_token %}
+    <button type="submit">Create</button>
+</form>
+{% endblock %}

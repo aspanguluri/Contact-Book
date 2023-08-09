@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Contact{% endblock %}
+
+{% block content %}
+<h1>Delete a Contact</h1>
+<form method="POST">
+    <table>
+        {{form}}
+        <input type="hidden" name="associated_user" value="{{contact.associated_user_id}}">
+        </select>
+<!--        <input type="hidden" name="next" value="{{ request.GET.next }}">-->
+        <label for="contact">Select Which Contact is being deleted: </label>
+        <select name="contact" id="contact">
+            {% for contact in contacts %}
+                <option value="{{contact.id}}">{{contact.fname}} {{contact.lname}}</option>
+            {% endfor %}
+        </select>
+    </table>
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}

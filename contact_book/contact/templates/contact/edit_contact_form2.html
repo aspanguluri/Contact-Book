@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Contact{% endblock %}
+
+{% block content %}
+<a href="{% url 'contactDetails' contactid %}">Go Back</a><br/>
+<h1>Edit a Contact</h1>
+<form method="POST">
+    <table>
+<!--        <label for="contact">Select Which Contact is being Edited: </label>-->
+<!--        <select name="contact" id="contact">-->
+<!--            {% for contact in contacts %}-->
+<!--                <option value="{{contact.id}}">{{contact.fname}} {{contact.lname}}</option>-->
+<!--            {% endfor %}-->
+<!--        </select>-->
+        {{form}}
+<!--        <input type="hidden" name="next" value="{{ request.GET.next }}">-->
+    </table>
+    {% csrf_token %}
+    <button type="submit">Edit</button>
+</form>
+{% endblock %}

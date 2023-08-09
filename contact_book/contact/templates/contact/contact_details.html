@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{contact.fname}} {{contact.lname}} Details{% endblock %}
+
+{% block content %}
+<a href="{% url 'user_home' user.id %}">Go Back</a><br/>
+<h1>{{contact.fname}} {{contact.lname}} Details</h1>
+
+<p>Name: {{contact.fname}} {{contact.lname}}</p>
+<p>Address: {{contact.house_number}} {{contact.street}}, {{contact.city}}, {{contact.state}} {{contact.zipcode}}</p>
+<p>Phone number: {{contact.phone_number}}</p>
+<p>Workplace: {{contact.workplace}}</p>
+<p>Lat: {{lat}}</p>
+<p>Long: {{long}}</p>
+<p><a href="{% url 'createMap' contact.id%}">See Map</a></p>
+
+<br/>
+<br/>
+
+<a href="{% url 'editContact' contact.id%}">Edit Contact</a>
+<a href="{% url 'deleteContact' contact.id%}">Delete Contact</a>
+{% endblock %}

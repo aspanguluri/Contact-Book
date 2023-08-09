@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<p>
+    <a href="{% url 'createLogin' %}">Sign Up</a>
+    <br/>
+    <a href="{% url 'signIn' %}">Log In</a>
+</p>
+<h1>Welcome to the Contact Book!</h1>
+
+<h3>Registered Users: </h3>
+<table>
+    {% for login in Logins %}
+        <tr>
+            <td>{{login.username}}</td>
+<!--            <td>&emsp;&emsp;&emsp;&emsp;<a href="{% url 'deleteLogin' login.id %}">Delete Login</a></td>-->
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
