@@ -9,7 +9,6 @@ import requests
 from django.http import HttpResponseRedirect
 # Create your views here.
 
-# createContactForm = modelform_factory(Contact, exclude=[])
 def createContact(request, id):
     if request.method=="POST":
         form = CreateContactForm(request.POST)
@@ -31,11 +30,7 @@ def createContact(request, id):
 
                 c = Contact(fname=fname, lname=lname, house_number=house_number, street=street, city=city, state=state,zipcode=zipcode,phone_number=phone_number, email=email, workplace=workplace, associated_user=user1)
                 c.save()
-            # form.save()
-            #
 
-
-                #return render(request, "user/user_home.html", {"user": user1, "contacts": contacts})
                 return redirect('user_home', user1.id)
     else:
         form = CreateContactForm()
@@ -45,8 +40,6 @@ def editContact(request, contactid):
     if request.method=="POST":
         form = EditContactForm(request.POST)
         if form.is_valid():
-            #contact = form.cleaned_data['contact']
-            #contact = request.POST.get('contact','/')
             fname = form.cleaned_data['fname']
             lname = form.cleaned_data['lname']
             house_number = form.cleaned_data['house_number']
@@ -57,8 +50,6 @@ def editContact(request, contactid):
             phone_number = form.cleaned_data['phone_number']
             email = form.cleaned_data['email']
             workplace = form.cleaned_data['workplace']
-
-            #user1 = get_object_or_404(Login, pk=contactid)
 
             contacts = Contact.objects.filter(id=contactid)
             contact = contacts[0]
@@ -81,7 +72,6 @@ def editContact(request, contactid):
             user1 = get_object_or_404(Login, pk=associated_user_id)
 
             return redirect('user_home', user1.id)
-            #return render(request, "user/user_home.html", {"user": user1, "contacts": contacts})
     else:
         contacts = Contact.objects.filter(id=contactid)
         contact = contacts[0]
@@ -113,17 +103,6 @@ def contactDetails(request, contactid):
     associated_user_id = instance.associated_user_id
     user1 = get_object_or_404(Login, pk=associated_user_id)
 
-    # lat = 'placeholder'
-    # long = 'placeholder'
-
-    # def print_hi(name):
-    #     # Use a breakpoint in the code line below to debug your script.
-    #     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-    #
-    # # Press the green button in the gutter to run the script.
-    # if __name__ == '__main__':
-    #     print_hi('PyCharm')
-
     # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
 
@@ -134,7 +113,6 @@ def contactDetails(request, contactid):
 
     params = {
         'address': str(instance.house_number)+' '+str(instance.street)+' '+str(instance.state)+' '+str(instance.zipcode),
-        #'address': '1173 N Hillview Dr Milpitas CA 95035',
         'sensor': 'false',
         'region': 'USA',
         'key': key
@@ -144,27 +122,13 @@ def contactDetails(request, contactid):
     res = req.json()
 
     # Use the first result
-    #print(res)
     result = res['results'][0]
 
     lat = result['geometry']['location']['lat']
     long = result['geometry']['location']['lng']
 
-    #print('{address}. (lat, lng) = ({lat}, {lng})'.format(**geodata))
-
 
     return render(request, "contact/contact_details.html", {"contact":instance, "user":user1, "lat":lat, "long": long})
-
-# def createMap(request):
-#     if request.method=="POST":
-#         form = CreateMapForm(request.POST)
-#         if form.is_valid():
-#             lat = form.cleaned_data['lat']
-#             long = form.cleaned_data['long']
-#             return render(request,"contact/Map.html",{"lat":lat,"long":long})
-#     else:
-#         form = CreateMapForm()
-#     return render(request, "contact/create_map_form.html", {"form":form})
 
 def createMap(request, contactid):
     instance = get_object_or_404(Contact, pk=contactid)
@@ -175,7 +139,6 @@ def createMap(request, contactid):
     params = {
         'address': str(instance.house_number) + ' ' + str(instance.street) + ' ' + str(instance.state) + ' ' + str(
             instance.zipcode),
-        # 'address': '1173 N Hillview Dr Milpitas CA 95035',
         'sensor': 'false',
         'region': 'USA',
         'key': key
@@ -185,7 +148,6 @@ def createMap(request, contactid):
     res = req.json()
 
     # Use the first result
-    # print(res)
     result = res['results'][0]
 
     lat = result['geometry']['location']['lat']
