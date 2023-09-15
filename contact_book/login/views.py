@@ -64,25 +64,3 @@ def deleteLogin(request, loginid):
     login.delete()
 
     return redirect('home')
-
-# def deleteContact(request, id):
-#     if request.method == "POST":
-#         form = DeleteContactForm(request.POST)
-#         if form.is_valid():
-#             contact = request.POST.get('contact', '/')
-#             instance = Contact.objects.get(id=contact)
-#             instance.delete()
-#
-#             # user = form.cleaned_data['associated_user']
-#             # query = Login.objects.filter(username=user.username)
-#             user1 = get_object_or_404(Login, pk=id)
-#             contacts = Contact.objects.filter(associated_user=id)
-#
-#             # return render(request, "user/user_home.html", {"user": user1, "contacts": contacts})
-#             return redirect('user_home', user1.id)
-#     else:
-#         form = DeleteContactForm()
-#     contacts = Contact.objects.filter(associated_user=id)
-#     associated_user = Login.objects.filter(id=id)
-#     return render(request, "contact/delete_contact_form2.html",
-#                   {"form": form, "contacts": contacts, "associated_user": associated_user[0]})
