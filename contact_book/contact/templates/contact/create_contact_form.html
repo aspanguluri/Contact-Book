@@ -8,8 +8,6 @@
 <form method="POST">
     <table>
         {{form}}
-<!--        <input type="hidden" name="associated_user" value="{{ associated_user.id }}">-->
-<!--        <input type="hidden" name="next" value="{{ request.GET.next }}">-->
     </table>
     {% csrf_token %}
     <button type="submit">Create</button>
