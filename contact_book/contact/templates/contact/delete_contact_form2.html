@@ -9,7 +9,6 @@
         {{form}}
         <input type="hidden" name="associated_user" value="{{contact.associated_user_id}}">
         </select>
-<!--        <input type="hidden" name="next" value="{{ request.GET.next }}">-->
         <label for="contact">Select Which Contact is being deleted: </label>
         <select name="contact" id="contact">
             {% for contact in contacts %}
