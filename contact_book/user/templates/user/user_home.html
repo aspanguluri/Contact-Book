@@ -10,9 +10,6 @@
     <br/>
     <a href="{% url 'createContact' user.id%}">Create Contact</a>
     <br/>
-<!--    <a href="{% url 'editContact' user.id%}">Edit Contact</a>-->
-<!--    <br/>-->
-<!--    <a href="{% url 'deleteContact' user.id%}">Delete Contact</a>-->
 </p>
     <h1>{{user.fname}} {{user.lname}}</h1>
     <h2>Contacts</h2>
@@ -20,8 +17,6 @@
         {% for contact in contacts %}
         <tr>
         <td><a href="{% url 'contactDetails' contact.id %}">{{contact.fname}} {{contact.lname}}</a></td>
-<!--        <td>&emsp;&emsp;&emsp;&emsp;<a href="{% url 'editContact' contact.id%}">Edit Contact</a></td>-->
-<!--        <td>&emsp;&emsp;&emsp;&emsp;<a href="{% url 'deleteContact' contact.id%}">Delete Contact</a></td>-->
         </tr>
         {% endfor %}
     </table>
