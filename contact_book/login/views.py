@@ -16,7 +16,6 @@ def createLogin(request):
             username = form.cleaned_data['username']
             flag = False
             query = Login.objects.all()
-            #checking whether there is an existing user with this username
             for i in query:
                 if i.username==username:
                     flag = True
