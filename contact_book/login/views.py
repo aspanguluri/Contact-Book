@@ -43,7 +43,6 @@ def signIn(request):
                     user1 = get_object_or_404(Login, pk = query[0].id)
                     contacts = Contact.objects.filter(associated_user=query[0])
                     return redirect('user_home', user1.id)
-                    #return render(request, "user/user_home.html",{"user" : user1, "contacts":contacts})
             else:
                 form = LoginForm()
             return render(request, "login/sign_in_form.html", {"form": form})
